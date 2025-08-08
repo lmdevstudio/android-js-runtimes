@@ -1,6 +1,8 @@
 apply plugin: 'com.android.library'
 
 android {
+    namespace "io.abner.fastdev.android.quickjs"
+
     externalNativeBuild {
         // Encapsulates your CMake build configurations.
         cmake {
