@@ -1,3 +1,4 @@
+jdk: openjdk17
 before_install:
   - ./gradlew -p ./download-jsc downloadJsc
 install:
