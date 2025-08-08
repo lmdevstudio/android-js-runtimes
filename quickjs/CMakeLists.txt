@@ -24,6 +24,11 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DCONFIG_VERSION=\\\"2021-03-27\\\"")
 find_library(log-lib log)
 target_link_libraries(fastdev_quickjs_runtime ${log-lib})
 
+# Fix for NDK <22: Set page size for 16KB page alignment compatibility
+# https://developer.android.com/guide/practices/page-sizes#compile-r22-lower
+target_link_options(fastdev_quickjs_runtime PRIVATE "-Wl,-z,max-page-size=16384")
+target_link_options(fastdev_quickjs_runtime PRIVATE "-Wl,-z,common-page-size=16384")
+
 if(MSVC)
     # https://github.com/ekibun/flutter_qjs/issues/7
     target_compile_options(fastdev_quickjs_runtime PRIVATE "/Oi-")
